@@ -37,7 +37,7 @@ namespace Tentti_tehtava2
                 Console.WriteLine(p.ToString());
             }
             // Listan sarjallistaminen ja tulostus
-            string jsonList = JsonConvert.SerializeObject(pisteet).;
+            string jsonList = JsonConvert.SerializeObject(pisteet);
             Console.WriteLine(jsonList);
         }
     }
