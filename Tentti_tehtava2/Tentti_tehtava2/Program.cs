@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using Newtonsoft.Json.Serialization;
 
 namespace Tentti_tehtava2
 {
@@ -18,11 +19,13 @@ namespace Tentti_tehtava2
             pisteet.Add(p1);
             pisteet.Add(p2);
             // Sarjallistaminen ja tulostus
+            Console.WriteLine("\nSARJALLISTAMINE JA TULOSTUS\n");
             string jsonString = JsonConvert.SerializeObject(pisteet);
             Console.WriteLine(jsonString);
 
             //Binääritiedoston lukeminen ja tulostus, sekä lisäys listaan
-            FileStream stream = new FileStream("C:\\tmp\\Tentti\\bindataTentti.bin", FileMode.Open);
+            Console.WriteLine("\nBINAARITIEDOSTON LUKEMINEN JA TULOSTUS\n");
+            FileStream stream = new FileStream("C:\\tmp\\bindataTentti.bin", FileMode.Open);
             BinaryReader reader = new BinaryReader(stream);
 
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -36,9 +39,19 @@ namespace Tentti_tehtava2
                 pisteet.Add(p);
                 Console.WriteLine(p.ToString());
             }
-            // Listan sarjallistaminen ja tulostus
+            // Listan sarjallistaminen
+            Console.WriteLine("\nLISTAN SARJALLISTAMINEN JA TULOSTUS\n");
             string jsonList = JsonConvert.SerializeObject(pisteet);
-            Console.WriteLine(jsonList);
+            //Listan tulostaminen hienommin
+            foreach (var item in pisteet)
+            {
+                string jsonPretty = JsonConvert.SerializeObject(item);
+                Console.WriteLine(jsonPretty);
+            }
+            
+           
+            
+            
         }
     }
 }
